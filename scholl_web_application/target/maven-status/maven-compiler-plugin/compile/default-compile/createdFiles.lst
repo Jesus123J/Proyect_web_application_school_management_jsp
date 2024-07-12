@@ -1,0 +1,9 @@
+com\idevexpert\scholl_web_application\model\ModelStudent.class
+com\idevexpert\scholl_web_application\resources\JakartaEE8Resource.class
+com\idevexpert\scholl_web_application\JakartaRestConfiguration.class
+com\idevexpert\scholl_web_application\controller\ControllerStudent.class
+com\idevexpert\scholl_web_application\controller\ControllerAdministrator.class
+com\idevexpert\scholl_web_application\controller\ConnectionC.class
+com\idevexpert\scholl_web_application\controller\ControllerLogin.class
+com\idevexpert\scholl_web_application\data\connectiondb\ConnectionDb.class
+com\idevexpert\scholl_web_application\model\ModelAdministrator.class
