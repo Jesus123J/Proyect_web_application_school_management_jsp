@@ -7,22 +7,18 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
-    String dataLoginResponse = (String) session.getAttribute("dashboard");
+    String pages = null;
+   
+    if (request.getAttribute("pages") == null) {
+        response.sendRedirect(request.getContextPath() +  "/dashboard");
+        return;
+    } else {
+        pages = (String) request.getAttribute("pages");
+    }
 %>
 <html>
     <jsp:include page="views/inic/Head.jsp" />
     <body>
-        <%
-            
-            if (dataLoginResponse != null) {
-        %>
-        <jsp:include page="views/auth/Auth.jsp"/>
-        <%
-            }else{
-        %>
-        <jsp:include page="views/dashboard/Dashboard.jsp" />
-         <%
-            }
-        %>
+        <jsp:include page="<%=pages%>" />
     </body>
 </html>

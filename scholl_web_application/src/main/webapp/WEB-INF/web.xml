@@ -9,8 +9,38 @@
         </session-timeout>
     </session-config>
     <servlet>
-        <servlet-name>ControllerLogin</servlet-name>
-        <servlet-class>com.utp.management_web_application.controller.ControllerLogin</servlet-class>
+        <servlet-name>ControllerDashboard</servlet-name>
+        <servlet-class>com.idevexpert.scholl_web_application.controller.ControllerDashboard</servlet-class>
     </servlet>
-   
+    <servlet-mapping>
+        <servlet-name>ControllerDashboard</servlet-name>
+        <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ControllerStudent</servlet-name>
+        <servlet-class>com.idevexpert.scholl_web_application.controller.ControllerStudent</servlet-class>
+    </servlet> 
+    <servlet-mapping>
+        <servlet-name>ControllerStudent</servlet-name>
+        <url-pattern>/student</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ControllerLogin</servlet-name>
+        <servlet-class>com.idevexpert.scholl_web_application.controller.ControllerLogin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ControllerLogin</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+ 
+    <servlet>
+        <servlet-name>ControllerAdmin</servlet-name>
+        <servlet-class>com.idevexpert.scholl_web_application.controller.ControllerAdmin</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ControllerAdmin</servlet-name>
+        <url-pattern>/admin</url-pattern>
+    </servlet-mapping>
 </web-app>

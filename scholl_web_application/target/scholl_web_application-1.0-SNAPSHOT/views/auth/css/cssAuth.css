@@ -16,7 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 body{
-    background-image: url(Web Pages/views/auth/resources/fondo.jpg);
+    background-image: url(views/auth/resources/fondo.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

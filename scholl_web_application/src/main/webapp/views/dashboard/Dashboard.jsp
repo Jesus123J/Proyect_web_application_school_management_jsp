@@ -5,9 +5,15 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%
+    String user = (String) request.getSession().getAttribute("username");
+    if (user == null) {
+        user = "";
+    }
+%>
 <main>
-    <link href="views/dashboard/css/cssDashboard.css" rel="stylesheet" type="text/css"/>
+
+
     <!-- header section starts -->
 
     <header class="header">
@@ -21,8 +27,10 @@
             <a href="#teacher" class="hover-underline">profesores</a>
             <a href="#contact" class="hover-underline">contact</a>
             <a href="PreguntasFrec/index6.html" class="hover-underline">Preguntas Frecuentes</a>
-            <a href="index3.html"  class="hover-underline">metodo y gastos de pago</a>
-            <a href="<%=request.getContextPath()+"/login" %>/" class="custom-icon-link" onclick="openCart()">
+            <% if (!user.isEmpty()) {%>
+            <a href="<%= request.getContextPath()%>/admin" class="hover-underline">metodo y gastos de pago</a>
+            <% }%>
+            <a href="" class="custom-icon-link" onclick="openCart()">
                 <i class="fas fa-shopping-cart"></i> 
             </a>
         </nav>
@@ -34,7 +42,8 @@
 
         <!-- login form -->
 
-        <form action="ControllerLogin" class="login-form">
+        <a><%= user%></a>
+        <form action="/login" class="login-form">
             <h3>login form</h3>
             <input type="hidden" name="accion" value="loginService">
             <input type="email" placeholder="Entre con su Hotmail" class="box">
@@ -47,10 +56,9 @@
                 <span class="text text-1">login</span>
                 <span class="text text-2" aria-hidden="true">iniciar </span>
             </a>
-      
-                <span class="text text-1">crear</span>
-                 <button type="submit" class="btn btn-primary">Crear cuenta</button>
-         
+
+            <span class="text text-1">crear</span>
+            <button type="submit" class="btn btn-primary">Crear cuenta</button>
         </form>
 
     </header>
@@ -59,6 +67,7 @@
     <section class="home" id="home">
 
         <div class="content">
+            <button type="submit"onclick="window.location.href = '<%= request.getContextPath()%>/login'" class="btn btn-primary">Crear cuenta</button>
             <h3 style="color: black;">Colegio nacional</h3>
             <p style="color: black;"> EXCELENCIA ACADÉMICA Y FORMACIÓN CRISTIANA PARA LA VIDA <br>El Colegio San Martin de  Porres es una obra del 
                 Convento del Santísimo Rosario de Lima la cual pertenece a la Provincia de San Juan Bautista del Perú, 
@@ -384,7 +393,7 @@
             </div>
             <div class="my-card-body">
                 <form action="ControllerLogin" class="my-form" method="post">
-                   <input type="hidden" name="accion" value="loginService">
+                    <input type="hidden" name="accion" value="loginService">
                     <input type="text" name="nombre" placeholder="Nombre completo" class="my-input my-input-50">
                     <input type="text" placeholder="Nombre del Apoderado" class="my-input my-input-50">
                     <input type="email" name="correo" placeholder="Correo electrónico" class="my-input my-input-50">
@@ -409,7 +418,5 @@
     </div>
 </main>
 
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <!-- custom js -->
-<script src="views/dashboard/js/jsDashboard.js" type="text/javascript"></script>
