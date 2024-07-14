@@ -26,21 +26,24 @@ public class ControllerAdmin extends HttpServlet {
             throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        if (request.getContentType().equals("application/json")) {
+        if (request.getContentType() != null) {
             List<PagosDto> pagosList = pagosDAO.getAllPagos();
-
+            
             Map<String, List<PagosDto>> responseData = new HashMap<>();
-            responseData.put("ingresos", pagosList.stream().filter(p -> p.getValor().startsWith("+")).collect(Collectors.toList()));
-            responseData.put("egresos", pagosList.stream().filter(p -> p.getValor().startsWith("-")).collect(Collectors.toList()));
+            responseData.put("ingresos", pagosList);
+            responseData.put("egresos", pagosList);
 
             String json = new Gson().toJson(responseData);
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(json);
+            
         } else {
+            
             request.setAttribute("pages", "views/admin/Admin.jsp");
             request.setAttribute("path", request.getServletPath());
             request.getRequestDispatcher("index.jsp").forward(request, response);
+        
         }
     }
 

@@ -5,18 +5,17 @@ let egresos = [];
 // Función para cargar la aplicación
 let cargarApp = async () => {
     try {
-        // Obtener datos de ingresos y egresos desde el servidor
         let response = await fetch('admin', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
             }
         });
-        
         if (response.ok) {
             let data = await response.json();
-            ingresos = data.filter(item => item.tipo === 'ingreso');
-            egresos = data.filter(item => item.tipo === 'egreso');
+            console.log(data);
+            ingresos = data.ingresos;
+            egresos = data.egresos;
             actualizarInterfaz();
         } else {
             console.error('Error al obtener datos del servidor.');
@@ -25,6 +24,7 @@ let cargarApp = async () => {
         console.error('Error en la solicitud AJAX:', error);
     }
 };
+
 
 // Función para actualizar la interfaz gráfica con los datos de ingresos y egresos
 let actualizarInterfaz = () => {
@@ -55,12 +55,12 @@ let cargarCabecero = () => {
 
 // Función para dar formato a moneda
 const formatoMoneda = (valor) => {
-    return valor.toLocaleString('es-ES', { style: 'currency', currency: 'EUR', minimumFractionDigits: 2 });
+    return valor.toLocaleString('es-ES', {style: 'currency', currency: 'EUR', minimumFractionDigits: 2});
 };
 
 // Función para dar formato a porcentaje
 const formatoPorcentaje = (valor) => {
-    return (valor * 100).toLocaleString('en-US', { style: 'percent', minimumFractionDigits: 2 });
+    return (valor * 100).toLocaleString('en-US', {style: 'percent', minimumFractionDigits: 2});
 };
 
 // Función para cargar los ingresos en la interfaz
@@ -89,9 +89,7 @@ const crearPagoHTML = (pago, tipo) => {
             <div class="derecha limpiarEstilos">
                 <div class="elemento_valor">${tipo === 'ingreso' ? '+ ' : '- '}${formatoMoneda(pago.valor)}</div>
                 <div class="elemento_eliminar">
-                    <button class="elemento_eliminar--btn" onclick="eliminarPago(${pago.idPagos}, '${tipo}')">
-                        <ion-icon name="close-circle-outline"></ion-icon>
-                    </button>
+                    <button type="submit" onclick="eliminarPago(${pago.idPagos}, '${tipo}')" class="btn btn-primary">E</button>
                 </div>
             </div>
         </div>
